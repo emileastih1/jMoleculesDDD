@@ -4,11 +4,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-parent</artifactId>
 			<version>3.2.0</version>
-			<relativePath/> <!-- lookup parent from repository -->
+			<relativePath/>
 		</parent>
 
 		<artifactId>jmolecules-spring-data-jpa</artifactId>
-		<name>jMolecules Examples - Spring Data JPA Example</name>
+		<name>jMolecules Examples - Spring Data JPA with ArchUnit and Bytebuddy</name>
 
 		<properties>
 			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
