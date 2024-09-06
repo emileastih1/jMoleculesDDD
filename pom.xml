@@ -1,0 +1,149 @@
+	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		<modelVersion>4.0.0</modelVersion>
+		<parent>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-parent</artifactId>
+			<version>3.2.0</version>
+			<relativePath/> <!-- lookup parent from repository -->
+		</parent>
+
+		<artifactId>jmolecules-spring-data-jpa</artifactId>
+		<name>jMolecules Examples - Spring Data JPA Example</name>
+
+		<properties>
+			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+			<bytebuddy.version>1.14.10</bytebuddy.version>
+			<hibernate.version>6.4.1.Final</hibernate.version>
+			<jmolecules.version>2023.1.1</jmolecules.version>
+			<java.version>17</java.version>
+		</properties>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+
+			<!-- jMolecules -->
+
+			<dependency>
+				<groupId>org.jmolecules.integrations</groupId>
+				<artifactId>jmolecules-starter-ddd</artifactId>
+			</dependency>
+
+			<!-- jMolecules integrations -->
+
+			<dependency>
+				<groupId>org.jmolecules.integrations</groupId>
+				<artifactId>jmolecules-spring</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jmolecules.integrations</groupId>
+				<artifactId>jmolecules-jpa</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jmolecules.integrations</groupId>
+				<artifactId>jmolecules-bytebuddy-nodep</artifactId>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-devtools</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jmolecules.integrations</groupId>
+				<artifactId>jmolecules-archunit</artifactId>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.tngtech.archunit</groupId>
+				<artifactId>archunit-junit5</artifactId>
+				<version>1.3.0</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Miscellaneous -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<optional>true</optional>
+			</dependency>
+		</dependencies>
+
+		<dependencyManagement>
+			<dependencies>
+				<!-- Custom version overrides -->
+				<dependency>
+					<groupId>org.hibernate.orm</groupId>
+					<artifactId>hibernate-core</artifactId>
+					<version>${hibernate.version}</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.jmolecules</groupId>
+					<artifactId>jmolecules-bom</artifactId>
+					<version>${jmolecules.version}</version>
+					<scope>import</scope>
+					<type>pom</type>
+				</dependency>
+
+			</dependencies>
+		</dependencyManagement>
+
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.10.0</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<parameters>true</parameters>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.2.3</version>
+				</plugin>
+				<plugin>
+					<groupId>net.bytebuddy</groupId>
+					<artifactId>byte-buddy-maven-plugin</artifactId>
+					<version>${bytebuddy.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>transform-extended</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<classPathDiscovery>true</classPathDiscovery>
+					</configuration>
+				</plugin>
+			</plugins>
+		</build>
+
+	</project>
